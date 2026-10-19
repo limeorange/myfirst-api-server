@@ -6,12 +6,12 @@ data:
 
     developer:
       owner:
-        name: skala
+        name: sk094
         role: kubernetes
         level: high
       team:
         position: "5th floor"
-        detail: class-0
+        detail: class-3
 
     # H2 설정
     spring:
@@ -34,20 +34,20 @@ data:
           mode: always
 kind: ConfigMap
 metadata:
-  name: skala-backend-configmap
-  namespace: class-0
+  name: sk094-backend-configmap
+  namespace: class-3
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    skala.io/owner: skala
-    skala.io/registry: skala-registry.skala-ai.com
+    skala.io/owner: sk094
+    skala.io/registry: skala-registry.skala-us.com
   labels:
     skala.io/component: skala-devops
-    skala.io/managed-by: class-0-skala
-  name: skala-myfirst-api-server
-  namespace: class-0
+    skala.io/managed-by: class-3-sk094
+  name: sk094-myfirst-api-server
+  namespace: class-3
 spec:
   ports:
   - name: http
@@ -57,9 +57,7 @@ spec:
     port: 8081
     targetPort: 8081
   selector:
-    app: skala-myfirst-api-server
-    skala.io/component: skala-devops
-    skala.io/managed-by: class-0-skala
+    app: sk094-myfirst-api-server
   type: ClusterIP
 ---
 apiVersion: apps/v1
@@ -69,36 +67,32 @@ metadata:
     prometheus.io/path: /actuator/prometheus
     prometheus.io/port: "8080"
     prometheus.io/scrape: "true"
-    skala.io/owner: skala
-    skala.io/registry: skala-registry.skala-ai.com
-    update: e773ddf4
+    skala.io/owner: sk094
+    skala.io/registry: skala-registry.skala-us.com
+    update: 26c1703a
   labels:
     skala.io/component: skala-devops
-    skala.io/managed-by: class-0-skala
-  name: skala-myfirst-api-server
-  namespace: class-0
+    skala.io/managed-by: class-3-sk094
+  name: sk094-myfirst-api-server
+  namespace: class-3
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: skala-myfirst-api-server
-      skala.io/component: skala-devops
-      skala.io/managed-by: class-0-skala
+      app: sk094-myfirst-api-server
   template:
     metadata:
       annotations:
-        skala.io/owner: skala
-        skala.io/registry: skala-registry.skala-ai.com
+        skala.io/owner: sk094
+        skala.io/registry: skala-registry.skala-us.com
       labels:
-        app: skala-myfirst-api-server
-        skala.io/component: skala-devops
-        skala.io/managed-by: class-0-skala
+        app: sk094-myfirst-api-server
     spec:
       containers:
       - env:
         - name: SPRING_PROFILES_ACTIVE
           value: prod
-        image: skala-registry.skala-ai.com/class-0/skala-webserver:1.0
+        image: skala-registry.skala-us.com/class-3/sk094-webserver:1.0
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -125,5 +119,5 @@ spec:
       terminationGracePeriodSeconds: 20
       volumes:
       - configMap:
-          name: skala-backend-configmap
+          name: sk094-backend-configmap
         name: config-volume
