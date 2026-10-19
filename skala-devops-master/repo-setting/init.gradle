@@ -1,0 +1,9 @@
+allprojects {
+    repositories {
+        maven {
+            name = 'googleMavenCentral'
+            url = uri('https://maven-central.storage-download.googleapis.com/maven2/')
+        }
+        mavenCentral()
+    }
+}

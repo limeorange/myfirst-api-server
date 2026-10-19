@@ -1,0 +1,16 @@
+#
+# template
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+{{- else }}
+# Service disabled
+{{- end }}
+
+
+# port가 values.yaml에 없으면 80을 기본값으로 사용
+containerPort: {{ default 80 .Values.port }}
+
+# adminUser가 비어있으면 에러 발생 후 배포 중단
+admin: {{ required "adminUser is required!" .Values.adminUser }}
+

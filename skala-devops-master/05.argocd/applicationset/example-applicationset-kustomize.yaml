@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sk000-myfirst-app-set
+  namespace: class-0
+spec:
+  generators:
+  - list:
+      elements:
+      - environment: dev
+        path: kustomize/overlays/dev
+        server: https://96BD83E8CE5CE0396D006BC5CEB350B0.gr7.ap-northeast-2.eks.amazonaws.com
+        namespace: skala-dev
+      - environment: prod
+        path: kustomize/overlays/prod
+        server: https://96BD83E8CE5CE0396D006BC5CEB350B0.gr7.ap-northeast-2.eks.amazonaws.com
+        namespace: skala-prod
+  template:
+    metadata:
+      name: sk000-myfirst-api-server-'{{environment}}'
+      namespace: skala-argocd
+    spec:
+      destination:
+        namespace: '{{namespace}}'
+        server: '{{server}}'
+      project: class-0
+      source:
+        path: '{{path}}'
+        repoURL: https://github.com/himang10/myfirst-api-server.git
+        targetRevision: gitops
+        kustomize: {}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - PrunePropagationPolicy=background
+        - CreateNamespace=true

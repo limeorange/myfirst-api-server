@@ -1,0 +1,4 @@
+apiVersion: v2
+name: template-test
+version: 0.1.0
+

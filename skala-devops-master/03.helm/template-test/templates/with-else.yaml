@@ -1,0 +1,10 @@
+resources:
+  {{- with .Values.resources }}
+  limits:
+    cpu: {{ .limits.cpu }}
+    memory: {{ .limits.memory }}
+  {{- else }}
+  limits:
+    cpu: 50m
+    memory: 64Mi
+  {{- end }}
