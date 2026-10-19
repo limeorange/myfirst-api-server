@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sk094-kaniko-pod
+  namespace: class-3
+  labels:
+    app: sk094
+spec:
+  containers:
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:latest
+      args:
+        - --dockerfile=/workspace/Dockerfile
+        - --context=dir:///workspace
+        - --destination=skala-registry.skala-us.com/class-3/sk094-webserver:2.0.kaniko-pod
+      volumeMounts:
+        - name: kaniko-secret
+          mountPath: /kaniko/.docker
+        - name: workspace
+          mountPath: /workspace
+  restartPolicy: Never
+  volumes:
+    - name: kaniko-secret
+      secret:
+        secretName: harbor-registry-secret
+        items:
+          - key: .dockerconfigjson
+            path: config.json   # /kaniko/.docker/config.json 로 마운트됨
+    - name: workspace
+      configMap:   # 또는 PVC, emptyDir 교체 가능
+        name: sk094-app-workspace

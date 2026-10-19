@@ -35,3 +35,12 @@ dist
 
 # Local environment settings (contains secrets)
 /env.properties
+
+# Generated files containing local GitHub credentials
+/02.build-platform/pod-buildah/buildah-pod-withgit.yaml
+/02.build-platform/pod-buildkit/buildkit-pod-withgit.yaml
+/02.build-platform/pod-kaniko/kaniko-pod-withgit.yaml
+/04.jenkins/jenkins.yaml
+/04.jenkins/k8s/03-configmap.yaml
+/05.argocd/repo/git-repository.yaml
+/05.argocd/repo/helm-git-repository.yaml

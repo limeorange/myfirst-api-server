@@ -1,0 +1,3 @@
+application-helm.yaml
+application.yaml
+application-kustomize.yaml
