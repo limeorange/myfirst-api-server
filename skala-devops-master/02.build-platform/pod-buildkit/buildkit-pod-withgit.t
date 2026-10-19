@@ -17,6 +17,7 @@ spec:
       - |
         echo "=== Git Clone 시작 ==="
         git clone https://{{GIT_USERNAME}}:{{GIT_PASSWORD}}@{{GIT_REPO_URL}} .
+        cd /workspace/skala-devops-master/01.spring-backend-v1.0
         echo "=== Maven 빌드 시작 ==="
         mvn clean install -DskipTests
         echo "=== 빌드 완료 ==="
@@ -34,8 +35,10 @@ spec:
     args:
       - build
       - --frontend=dockerfile.v0
-      - --local=context=/workspace
-      - --local=dockerfile=/workspace
+      # - --local=context=/workspace
+      # - --local=dockerfile=/workspace
+      - --local=context=/workspace/skala-devops-master/01.spring-backend-v1.0
+      - --local=dockerfile=/workspace/skala-devops-master/01.spring-backend-v1.0
       - --opt=platform=linux/arm64,linux/amd64
       - --output=type=image,name={{DOCKER_REGISTRY}}/{{PROJECT_NAME}}/{{USER_NAME}}-{{IMAGE_NAME}}:1.0.buildkit-pod,push=true
     env:
