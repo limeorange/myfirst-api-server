@@ -1,8 +1,0 @@
-metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}
-{{- if .Values.test.enabled }}
-labels:
-  {{- include "mychart.labels" . | nindent 2 }}
-{{- end }}
-
-containerPort: {{ default "80" .Values.port }}

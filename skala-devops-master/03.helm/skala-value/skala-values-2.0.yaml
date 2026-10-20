@@ -1,6 +1,0 @@
-# 컨테이너 이미지 태그를 2.0으로 변경
-image:
-  tag: "2.0.buildkit"
-
-# 레플리카를 2개로 증가
-replicaCount: 2

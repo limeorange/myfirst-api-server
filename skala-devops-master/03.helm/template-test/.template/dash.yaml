@@ -1,9 +1,0 @@
-spec:
-  selector:
-    matchLabels:
-      app: myapp
-{{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-{{- end }}
-  template:
-    metadata:

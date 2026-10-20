@@ -1,5 +1,0 @@
-app: {{ .Values.name | upper | quote }}
-data:
-  config.yaml: |
-{{ toYaml .Values.config | indent 4 }}
-

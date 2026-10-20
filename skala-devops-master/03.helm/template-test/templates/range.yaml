@@ -1,5 +1,0 @@
-env:
-{{- range .Values.envs }}
-  - key: {{ .name }}
-    secret: {{ .value }}
-{{- end }}

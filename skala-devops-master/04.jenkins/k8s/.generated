@@ -1,6 +1,0 @@
-06-ingress.yaml
-04-deploy.yaml
-02-pvc.yaml
-03-configmap.yaml
-05-service.yaml
-01-buildah-registries.yaml
